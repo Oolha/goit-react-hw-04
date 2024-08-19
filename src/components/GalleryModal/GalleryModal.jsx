@@ -13,12 +13,11 @@ const GalleryModal = ({ isOpen, onClose, image }) => {
       overlayClassName={css.backdrop}
     >
       <img src={image?.urls?.regular} alt={image?.alt_description} />
-      <div>
+      <div className={css.text}>
         <p>Author: {image?.user?.name}</p>
-        <p>Instagram: {image?.user?.instagram_username}</p>
+        <p>Instagram: @{image?.user?.instagram_username}</p>
       </div>
     </Modal>
   );
 };
-
 export default GalleryModal;

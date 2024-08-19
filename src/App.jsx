@@ -7,6 +7,7 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import GalleryModal from "./components/GalleryModal/GalleryModal";
+import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -22,20 +23,30 @@ function App() {
 
   const fetchImages = async (query, page = 1) => {
     try {
+      setError(false);
+      setLoading(true);
       if (page === 1) {
         setImages([]);
       }
 
-      setError(false);
-      setLoading(true);
       const response = await axios.get(
         `https://api.unsplash.com/search/photos?query=${query}&page=${page}&client_id=${accessKey}`
       );
+
+      const newImages = response.data.results;
+
+      if (newImages.length === 0) {
+        if (page === 1) {
+          toast.error(`Nothing was found for "${query}".`);
+          setImages([]);
+        }
+      }
       setImages((prevImages) => [...prevImages, ...response.data.results]);
       setPage(page);
       setQuery(query);
     } catch (error) {
       setError(true);
+      toast.error("Error loading image");
     } finally {
       setLoading(false);
     }
@@ -71,12 +82,13 @@ function App() {
           )}
         </>
       )}
-      <Toaster />
+
       <GalleryModal
         isOpen={isModalOpen}
         onClose={closeModal}
         image={selectedImage}
       />
+      <Toaster />
     </div>
   );
 }

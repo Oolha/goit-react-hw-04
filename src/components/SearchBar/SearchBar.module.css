@@ -1,0 +1,27 @@
+.header {
+  background-color: #f3f36a;
+  padding: 22px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.input {
+  width: 160px;
+  padding: 10px 20px;
+  margin-right: 20px;
+  border: 1px solid #f7d09b;
+}
+.input:hover {
+  border: 1px solid #dbc13c;
+}
+.inputBtn {
+  width: 80px;
+  padding: 10px 20px;
+  border: 1px solid #f7d09b;
+  background-color: #f7f0e7;
+}
+.inputBtn:hover {
+  background-color: #dbc13c;
+}

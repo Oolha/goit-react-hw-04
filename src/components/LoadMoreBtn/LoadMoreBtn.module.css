@@ -1,0 +1,14 @@
+.btn {
+  width: 150px;
+  padding: 10px 20px;
+  border: 1px solid #f7d09b;
+  background-color: #f7f0e7;
+}
+.btn:hover {
+  background-color: #dbc13c;
+}
+.loadMoreBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
